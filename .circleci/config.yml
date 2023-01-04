@@ -10,8 +10,9 @@ jobs:
     steps: 
       - run: sudo apt update
       - run: sudo apt install libvirt-daemon-system
+      - run: sudo apt install libvirt-daemon
       - run: sudo systemctl enable libvirtd
-      - run: sudo service libvirt start
+      - run: sudo systemctl start libvirtd
       - run: sudo apt install qemu-kvm
       - checkout
       - run: rustup override set nightly
