@@ -9,6 +9,7 @@ jobs:
           DISPLAY: ":99"
     steps: 
       - checkout
+      - run: rustup override set nightly
       - run: cargo --version
       - run: rustc --version
       - run: rustup component add rust-src
