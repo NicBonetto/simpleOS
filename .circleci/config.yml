@@ -1,0 +1,15 @@
+version: 1.0
+
+jobs:
+  build:
+    working_directory: ~/simpleOS
+    docker:
+      - image: cimg/rust:1.50.0
+        environment:
+          DISPLAY: ":99"
+    steps: 
+      - checkout
+      - run: cargo --version
+      - run:
+          name: Tests
+          command: "cargo test"
