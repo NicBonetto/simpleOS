@@ -10,6 +10,9 @@ jobs:
     steps: 
       - checkout
       - run: cargo --version
+      - run: rustc --version
+      - run: rustup component add rust-src
+      - run: rustup component add llvm-tools-preview
       - run:
           name: Tests
           command: "cargo test"
