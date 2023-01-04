@@ -8,12 +8,19 @@ jobs:
         environment:
           DISPLAY: ":99"
     steps: 
+      - run: sudo apt update && upgrade
+      - run: sudo apt install libvirt-daemon
+      - run: sudo systemctl enable libvirtd
+      - run: sudo systemctl start libvirtd
+      - run: sudo apt install qemu-kvm
       - checkout
       - run: rustup override set nightly
       - run: cargo --version
       - run: rustc --version
       - run: rustup component add rust-src
       - run: rustup component add llvm-tools-preview
+      - run: cargo install bootimage
+      - run: cargo bootimage
       - run:
           name: Tests
           command: "cargo test"
