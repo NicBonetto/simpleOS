@@ -4,17 +4,10 @@ jobs:
   build:
     working_directory: ~/simpleOS
     docker:
-      - image: cimg/rust:1.50.0
+      - image: rust
         environment:
           DISPLAY: ":99"
     steps: 
-      - run: sudo apt update
-      - run: egrep -c '(vmx|svm)' /proc/cpuinfo
-      - run: kvm-ok
-      - run: sudo apt install cpu-checker -y
-      - run: sudo apt install qemu-kvm virt-manager virtinst libvirt-clients bridge-utils libvirt-daemon-system -y
-      - run: sudo systemctl enable --now libvirtd
-      - run: sudo systemctl start libvirtd
       - checkout
       - run: rustup override set nightly
       - run: cargo --version
