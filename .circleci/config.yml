@@ -1,4 +1,10 @@
-version: 1.0
+version: 2.1
+
+commands:
+  steps:
+    - run:
+        name: Setup Qemu
+        command: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
 
 jobs:
   build:
@@ -8,7 +14,6 @@ jobs:
         environment:
           DISPLAY: ":99"
     steps:
-      - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
       - checkout
       - run: rustup override set nightly
       - run: cargo --version
